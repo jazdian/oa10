@@ -1,25 +1,60 @@
 <?php
+
 require_once PATH_CTRLS . '/MSNav.php';
+require_once PATH_CTRLS . '/MSFooter.php';
+
+//require_once PATH_CLAS . '/routes.php';
+
+require_once PATH_CLAS . '/Router.php';
+require_once PATH_CLAS . '/Route.php';
+
 
 /**
  * Clase del home
  */
 class Home
 {
+
     /**
      * summary
      */
     public function __construct()
     {
-        
+    }
+
+    public function RouterOutlet()
+    {
+        $router = new Router($_SERVER['REQUEST_URI']);
+
+        $router->add('/oa10', function () {
+
+            require_once PATH_VIEW . '/web/page.php';
+        });
+
+        $router->add('/oa10/clientes', function () {
+
+            require_once PATH_VIEW . '/oa/clients.php';
+        });
+
+        $router->Run();
     }
 
     public function CreateNavBar()
-	{
-		$mynav = new MSNav();
-		return $mynav->NavBar();
-	}
+    {
+        $mynav = new MSNav();
+        return $mynav->NavBar();
+    }
 
+    public function CreateFooter()
+    {
+        $myfoot = new MSFooter();
+        return $myfoot->Footer();
+    }
+
+    public function CreateWebPage()
+    {
+        include_once PATH_VIEW . '/web/page.php';
+    }
 }
 
 $home = new Home();
