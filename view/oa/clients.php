@@ -1,1 +1,7 @@
-<h1><?php echo '...Mi pagina de clientes...'; ?></h1>
+
+
+<div class="container">
+    <div class="row">
+        <?php echo $cliente->FormCaptura(); ?>
+    </div>
+</div>
