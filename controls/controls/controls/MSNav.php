@@ -10,7 +10,6 @@ class MSNav
    //put your code here
 
 	private $items = array();
-  
     /**
      * @return mixed
      */
@@ -31,14 +30,25 @@ class MSNav
         return $this;
     }
 
+    private $class = "";
+    
+    public function SetClass($class_)
+    {
+       $this->class = $class_;
+    }
+    
+    
+    
     public function NavBar()
     {
-    	return $this->stringNavBar;
+    	return $this->StrinNavBar();
     }
 
-    private $stringNavBar = <<<EOF
+    private function StrinNavBar()
+    {
+             $stringNavBar = <<<EOF
   <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper $this->class">
       <a href="#!" class="brand-logo">Logo</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
@@ -56,6 +66,7 @@ class MSNav
     </div>
   </nav>
 EOF;
-
+             return $stringNavBar;
+    }
 
 }
