@@ -12,3 +12,5 @@ define('PATH_CLLER', $_SERVER['DOCUMENT_ROOT'] . '/oa10/controller');
 define('PATH_MODEL', $_SERVER['DOCUMENT_ROOT'] . '/oa10/model');
 
 define('PATH_VIEW', $_SERVER['DOCUMENT_ROOT'] . '/oa10/view');
+
+define('PATH_ASET', $_SERVER['DOCUMENT_ROOT'] . '/oa10/assets');

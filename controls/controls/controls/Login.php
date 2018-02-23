@@ -14,6 +14,12 @@ class Login
    private $pathLogo = '';
    private $styleLogin = "Materialize";
    private $title = '';
+   
+   public function setTitle($title)
+   {
+      $this->title = $title;
+      return $this;
+   }
 
    public function SetSendByAjax($sendByAjax_)
    {

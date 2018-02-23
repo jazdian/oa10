@@ -27,6 +27,8 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="../oa10/assets/js/funciones.js"></script>
+    
+    <script type="text/javascript"><?php echo $mylogin->FunctionAjax(); ?></script>
 
 </body>
 </html>

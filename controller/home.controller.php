@@ -3,8 +3,6 @@
 require_once PATH_CTRLS . '/MSNav.php';
 require_once PATH_CTRLS . '/MSFooter.php';
 
-//require_once PATH_CLAS . '/routes.php';
-
 require_once PATH_CLAS . '/Router.php';
 require_once PATH_CLAS . '/Route.php';
 
@@ -33,8 +31,14 @@ class Home
 
         $router->add('/oa10/clientes', function () {
 
-            require_once PATH_VIEW . '/oa/clients.php';
+            require_once PATH_CLLER . '/clientes.controller.php';
         });
+        
+        $router->add('/oa10/login', function () {
+
+            require_once PATH_CLLER . '/login.controller.php';
+        });
+        
 
         $router->Run();
     }
@@ -51,10 +55,7 @@ class Home
         return $myfoot->Footer();
     }
 
-    public function CreateWebPage()
-    {
-        include_once PATH_VIEW . '/web/page.php';
-    }
+
 }
 
 $home = new Home();
