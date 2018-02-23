@@ -9,5 +9,3 @@
 
 </div>
 
-<script type="text/javascript"><?php echo $mylogin->FunctionAjax(); ?></script>
-

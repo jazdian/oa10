@@ -46,6 +46,7 @@ class Home
     public function CreateNavBar()
     {
         $mynav = new MSNav();
+        $mynav->SetClass("blue darken-4");
         return $mynav->NavBar();
     }
 

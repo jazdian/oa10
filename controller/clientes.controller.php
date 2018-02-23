@@ -1,7 +1,10 @@
 <?php
 
+require_once PATH_MODEL . '/clientes.model.php';   
+   
 require_once PATH_CTRLS . '/DataAccess.php';
 require_once PATH_CTRLS . '/Connection.php';
+require_once PATH_CTRLS . '/DataTable.php';
 
 require_once PATH_CTRLS . '/Form.php';
 require_once PATH_CTRLS . '/TextBox.php';
@@ -137,7 +140,7 @@ EOF;
       $tb->SetLabelName("Hombre/Mujer");
       $tb->SetWrapHtmlCode($this->HTMLWrapML());
       return $tb->TextBox();
-   }   
+   }
 
    private function InputSalvar()
    {
@@ -148,7 +151,26 @@ EOF;
       $btn->SetText('Guardar Datos');
       $btn->SetOnclick('GuardarDatos();');      
       return $btn->Button();
-   }     
+   }
+   
+   private function GetAllDats()
+   {
+      $dats = new ClientesM();
+      $obj = $dats->AllDatsClientes();
+      //$jobj = json_encode($obj);
+      return $obj;
+   }
+   
+   public function CreateTable()
+   {
+      $tbl = new DataTable();
+      $tbl->SetID("tclietes");
+      $tbl->SetDataSource($this->GetAllDats());
+      $tbl->SetClass("striped");
+      $tbl->SetBtnEdit(array("type"=>"button", "name"=>"Editar", "show"=>true, "class"=>"waves-effect waves-light btn-flat"));      
+      return $tbl->CreateDT();
+   }
+
 
 }
 
