@@ -3,7 +3,7 @@
 
 define('PATH_ROOT', $_SERVER['DOCUMENT_ROOT'] . '/oa10');
 
-define('PATH_CTRLS', $_SERVER['DOCUMENT_ROOT'] . '/oa10/controls/controls/controls');
+define('PATH_CTRLS', $_SERVER['DOCUMENT_ROOT'] . '/oa10/controls');
 
 define('PATH_CLAS', $_SERVER['DOCUMENT_ROOT'] . '/oa10/classes');
 

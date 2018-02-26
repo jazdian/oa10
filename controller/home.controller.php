@@ -16,29 +16,22 @@ class Home
     /**
      * summary
      */
-    public function __construct()
-    {
-    }
 
     public function RouterOutlet()
     {
         $router = new Router($_SERVER['REQUEST_URI']);
 
         $router->add('/oa10', function () {
-
             require_once PATH_VIEW . '/web/page.php';
         });
 
         $router->add('/oa10/clientes', function () {
-
             require_once PATH_CLLER . '/clientes.controller.php';
         });
         
         $router->add('/oa10/login', function () {
-
             require_once PATH_CLLER . '/login.controller.php';
         });
-        
 
         $router->Run();
     }
@@ -55,7 +48,6 @@ class Home
         $myfoot = new MSFooter();
         return $myfoot->Footer();
     }
-
 
 }
 

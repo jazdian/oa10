@@ -10,7 +10,7 @@ require_once PATH_CTRLS . '/Form.php';
 require_once PATH_CTRLS . '/TextBox.php';
 require_once PATH_CTRLS . '/Button.php';
 
-class Clientes
+class ClientesUI
 {
 
    private function HTMLWrapBT()
@@ -174,6 +174,13 @@ EOF;
 
 }
 
-$cliente = new Clientes();
+
+class ClientesDat
+{
+    
+}
+
+
+$cliente = new ClientesUI();
 
 require_once PATH_VIEW . '/oa/clients.php';

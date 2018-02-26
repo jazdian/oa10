@@ -1,21 +1,13 @@
 
 
    <div class="container" style="margin-top: 25px;">
-      
-
-          <div class="row">
-             
-              <div class="col s12 l3"><button data-target="modal1" class="btn modal-trigger">Agregar nuevo Cliente</button></div>
-                          
-          </div>
-         
-
-      <div class="row">
-
-         <?php echo $cliente->CreateTable(); ?>
-
-      </div>
-
+        <div class="row">
+            <div class="col s12 l3"><button data-target="modal1" class="btn modal-trigger">Agregar nuevo Cliente</button></div>         
+        </div>
+     
+        <div class="row">
+           <?php echo $cliente->CreateTable(); ?>
+        </div>
    </div>
 
    <!-- Modal Structure -->
