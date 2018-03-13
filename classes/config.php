@@ -14,3 +14,12 @@ define('PATH_MODEL', $_SERVER['DOCUMENT_ROOT'] . '/oa10/model');
 define('PATH_VIEW', $_SERVER['DOCUMENT_ROOT'] . '/oa10/view');
 
 define('PATH_ASET', $_SERVER['DOCUMENT_ROOT'] . '/oa10/assets');
+
+define('HOST', 'localhost');
+
+define('DATABASE', 'oa');
+
+define('USER', 'root');
+
+define('PASSWORD', '');
+

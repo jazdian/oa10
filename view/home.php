@@ -21,7 +21,8 @@
 
     <?php echo $home->CreateNavBar(); ?>
 
-    <?php echo $home->RouterOutlet(); ?>
+    <?php // Esta función muestra la pagina según las rutas
+    echo $home->RouterOutlet(); ?>
 
     <?php echo $home->CreateFooter(); ?>
     

@@ -8,15 +8,15 @@ require_once PATH_CLAS . '/Route.php';
 
 
 /**
- * Clase del home
+ * Clase del home. 
  */
 class Home
 {
 
     /**
-     * summary
-     */
-
+     * 
+     * La función RouterOutlet Controla las rutas del sistema.
+    */
     public function RouterOutlet()
     {
         $router = new Router($_SERVER['REQUEST_URI']);

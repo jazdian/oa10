@@ -1,5 +1,7 @@
 <?php
-
+    
+    require_once PATH_CTRLS . '/Connection.php';
+    require_once PATH_CTRLS . '/DataAccess.php';
 
    /**
     * Description of clients
@@ -8,75 +10,66 @@
     */
    class ClientesM
    {
-     
-      public function AllDatsClientes()
-      {
-         
-         $dummy = array(
-               0=>(object)array(
-                  'id' => 1, 
-                  'name' => 'Rene', 
-                  'apat' => 'Gonzalez', 
-                  'amat' => 'Campos',
-                  'street' => 'Camino Real Mz4 Lt8a',
-                  'direction' => 'Las Fores, Tlalpan, CDMX',
-                  'telephone' => '5530780461',
-                  'sex' => '0'
-               ),
-               1=>(object)array(
-                  'id' => 2, 
-                  'name' => 'Rene', 
-                  'apat' => 'Gonzalez', 
-                  'amat' => 'Campos',
-                  'street' => 'Camino Real Mz4 Lt8a',
-                  'direction' => 'Las Fores, Tlalpan, CDMX',
-                  'telephone' => '5530780461',
-                  'sex' => '0'
-               ),        
-               2=>(object)array(
-                  'id' => 3, 
-                  'name' => 'Rene', 
-                  'apat' => 'Gonzalez', 
-                  'amat' => 'Campos',
-                  'street' => 'Camino Real Mz4 Lt8a',
-                  'direction' => 'Las Fores, Tlalpan, CDMX',
-                  'telephone' => '5530780461',
-                  'sex' => '0'
-               ),  
-               3=>(object)array(
-                  'id' => 4, 
-                  'name' => 'Rene', 
-                  'apat' => 'Gonzalez', 
-                  'amat' => 'Campos',
-                  'street' => 'Camino Real Mz4 Lt8a',
-                  'direction' => 'Las Fores, Tlalpan, CDMX',
-                  'telephone' => '5530780461',
-                  'sex' => '0'
-               ),            
-               4=>(object)array(
-                  'id' => 5, 
-                  'name' => 'Rene', 
-                  'apat' => 'Gonzalez', 
-                  'amat' => 'Campos',
-                  'street' => 'Camino Real Mz4 Lt8a',
-                  'direction' => 'Las Fores, Tlalpan, CDMX',
-                  'telephone' => '5530780461',
-                  'sex' => '0'
-               ), 
-               5=>(object)array(
-                  'id' => 6, 
-                  'name' => 'Rene', 
-                  'apat' => 'Gonzalez', 
-                  'amat' => 'Campos',
-                  'street' => 'Camino Real Mz4 Lt8a',
-                  'direction' => 'Las Fores, Tlalpan, CDMX',
-                  'telephone' => '5530780461',
-                  'sex' => '0'
-               )            
-            
-            );
-            return $dummy;
-      }
+        private $id = '';
+       
+        public function SetId($id_)
+        {
+           $this->id = $id_;
+        }
+       
+        public function Connection()
+        {
+             $cn = new Connection(HOST, DATABASE, USER, PASSWORD);
+             $conn = $cn->SimpleConnectionPDO();
+             return $conn['obj_'];
+        }
+
+        public function AllDatsClientes()
+        {
+            $JsonData = '{'
+              . '"params":{":1":"1"},'
+              . '"vars":{"NumFuncion":"0","QueryString":"SELECT `id`, `name`, `apat`, `amat`, `street`, `direction`, `telephone`, `sex`, `date_row` FROM `clients` WHERE 1 = ?"},'
+              . '"logs":{"usuario":"Rene","fecha":""}'
+              . '}';
+            $exc = new DataAccess();
+            $exc->SetConn($this->Connection());
+            $exc->SetJsonParams(json_decode($JsonData));
+
+            $dats = $exc->ExecStoredProcedure();
+            return $dats['obj_'];
+        }
+        
+       public function DatCliente()
+        {
+            $JsonData = '{'
+              . '"params":{":id":"' . $this->id . '"},'
+              . '"vars":{"NumFuncion":"0","QueryString":"SELECT `id`, `name`, `apat`, `amat`, `street`, `direction`, `telephone`, `sex`, `date_row` FROM `clients` WHERE id = ?"},'
+              . '"logs":{"usuario":"Rene","fecha":""}'
+              . '}';
+            $exc = new DataAccess();
+            $exc->SetConn($this->Connection());
+            $exc->SetJsonParams(json_decode($JsonData));
+
+            $dats = $exc->ExecStoredProcedure();
+            return $dats;
+        }
+        
+        public function NewClient()
+        {
+            $JsonData = '{'
+              . '"params":{":name":"JONH", ":apat":"SMITH", ":amat":"JOE", ":street":"CALLE MIRADOR CHAPULTEPEC NO. 2", ":direction":"LAS AGUILAS, MIGUEL HIDALGO, CDMX", ":telephone":"5544332211", ":sex":"H"},'
+              . '"vars":{"NumFuncion":"0","QueryString":"INSERT INTO clients (name, apat, amat, street, direction, telephone, sex) VALUES (?, ?, ?, ?, ?, ?, ?);"},'
+              . '"logs":{"usuario":"Rene","fecha":""}'
+              . '}';
+            $exc = new DataAccess();
+            $exc->SetConn($this->Connection());
+            $exc->SetJsonParams(json_decode($JsonData));
+
+            $dats = $exc->ExecStoredProcedure();
+            return $dats['obj_'];
+
+        }
+              
       
    }
    
