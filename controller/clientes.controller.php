@@ -28,8 +28,16 @@ EOF;
     public function FormCaptura() {
         $fmod = new Form();
         $fmod->SetID('GerenciaModal');
-        $str_form = $fmod->form(
-                $this->InputId(), $this->InputName(), $this->InputAPaterno(), $this->InputAMaterno(), $this->InputCalleNum(), $this->InputDireccion(), $this->InputTelefono(), $this->InputSexo(), $this->InputSalvar()
+        $str_form = $fmod->RunForm(
+                $this->InputId(), 
+                $this->InputName(), 
+                $this->InputAPaterno(), 
+                $this->InputAMaterno(),
+                $this->InputCalleNum(), 
+                $this->InputDireccion(), 
+                $this->InputTelefono(), 
+                $this->InputSexo(), 
+                $this->InputSalvar()
         );
         return $str_form;
     }
@@ -143,6 +151,14 @@ EOF;
             "style" => "font-size: 10px;",
             "show" => true,
             "class" => "btn waves-effect waves-light pink darken-2"));
+        $tbl->SetBtnSelect(array("type" => "button",
+            "name" => "Historial",
+            "onclick" => "SelectRegistroCli()",
+            "param_onclick" => "id",
+            "style" => "font-size: 10px;",
+            "show" => true,
+            "class" => "btn waves-effect waves-light pink darken-2"));
+            
         return $tbl->CreateDT();
     }
 

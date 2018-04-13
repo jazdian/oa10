@@ -11,12 +11,103 @@
    class ClientesM
    {
         private $id = '';
+        private $name = '';
+        private $apaterno = '';
+        private $amaterno = '';
+        private $callenum = '';
+        private $direction = '';
+        private $telefono = '';
+        private $sexo = '';
        
-        public function SetId($id_)
-        {
-           $this->id = $id_;
-        }
-       
+    public function SetId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of amaterno
+     *
+     * @return  self
+     */
+    public function setAmaterno($amaterno)
+    {
+        $this->amaterno = $amaterno;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of apaterno
+     *
+     * @return  self
+     */
+    public function setApaterno($apaterno)
+    {
+        $this->apaterno = $apaterno;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of callenum
+     *
+     * @return  self
+     */
+    public function setCallenum($callenum)
+    {
+        $this->callenum = $callenum;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of direccion
+     *
+     * @return  self
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of telefono
+     *
+     * @return  self
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of sexo
+     *
+     * @return  self
+     */
+    public function setSexo($sexo)
+    {
+        $this->sexo = $sexo;
+
+        return $this;
+    }    
+
         public function Connection()
         {
              $cn = new Connection(HOST, DATABASE, USER, PASSWORD);
@@ -57,8 +148,8 @@
         public function NewClient()
         {
             $JsonData = '{'
-              . '"params":{":name":"JONH", ":apat":"SMITH", ":amat":"JOE", ":street":"CALLE MIRADOR CHAPULTEPEC NO. 2", ":direction":"LAS AGUILAS, MIGUEL HIDALGO, CDMX", ":telephone":"5544332211", ":sex":"H"},'
-              . '"vars":{"NumFuncion":"0","QueryString":"INSERT INTO clients (name, apat, amat, street, direction, telephone, sex) VALUES (?, ?, ?, ?, ?, ?, ?);"},'
+              . '"params":{":name":"'.$this->name.'", ":apat":"'.$this->apaterno.'", ":amat":"'.$this->amaterno.'", ":street":"'.$this->callenum.'", ":direction":"'.$this->direccion.'", ":telephone":"'.$this->telefono.'", ":sex":"'.$this->sexo.'"},'
+              . '"vars":{"NumFuncion":"insert","QueryString":"INSERT INTO clients (name, apat, amat, street, direction, telephone, sex) VALUES (?, ?, ?, ?, ?, ?, ?);"},'
               . '"logs":{"usuario":"Rene","fecha":""}'
               . '}';
             $exc = new DataAccess();
@@ -71,5 +162,9 @@
         }
               
       
+
+
+
+ 
    }
    

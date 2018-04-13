@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     
+    <link rel="stylesheet" href="../oa10/assets/css/estilos.css">
     <!--
     <link rel="stylesheet" href="../oa10/assets/css/materialize.min.css">
-    <link rel="stylesheet" href="../oa10/assets/css/estilos.css">-->
+    -->
 
 </head>
 <body>

@@ -94,7 +94,7 @@ class Form
       }
    }
    
-   public function form()
+   public function RunForm()
    {
       $numargs = func_num_args();
       $nomargs = func_get_args();

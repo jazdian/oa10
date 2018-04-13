@@ -213,16 +213,16 @@ class DataTable
    
    private function ButtonSelect($IdRow)
    {
-      $class	 = ($this->btnEdit['class'] == '') ? '' : 'class="' . $this->btnEdit['class'] . '"';
-      $image	 = ($this->btnEdit['image'] == '') ? '' : '<img src="' . $this->btnEdit['image'] . '">';
-      $name	 = ($this->btnEdit['name'] == '') ? '' : $this->btnEdit['name'];
-      $attrib	 = ($this->btnEdit['attrib'] == '') ? '' : $this->btnEdit['attrib'];
-      $style	 = ($this->btnEdit['style'] == '') ? '' : 'style="' . $this->btnEdit['style'] . '"';
-      $type	 = ($this->btnEdit['type'] == '') ? '' : 'type="' . $this->btnEdit['type'] . '"';
-      $onclick	 = ($this->btnEdit['onclick'] == '') ? '' : 'OnClick="' . $this->btnEdit['onclick'] . '"';
+      $class	 = ($this->btnSelect['class'] == '') ? '' : 'class="' . $this->btnSelect['class'] . '"';
+      $image	 = ($this->btnSelect['image'] == '') ? '' : '<img src="' . $this->btnSelect['image'] . '">';
+      $name	      = ($this->btnSelect['name'] == '') ? '' : $this->btnSelect['name'];
+      $attrib	 = ($this->btnSelect['attrib'] == '') ? '' : $this->btnSelect['attrib'];
+      $style	 = ($this->btnSelect['style'] == '') ? '' : 'style="' . $this->btnSelect['style'] . '"';
+      $type	       = ($this->btnSelect['type'] == '') ? '' : 'type="' . $this->btnSelect['type'] . '"';
+      $onclick	 = ($this->btnSelect['onclick'] == '') ? '' : 'OnClick="' . $this->btnSelect['onclick'] . '"';
       $onclick = str_replace("()", "($IdRow)", $onclick);	      
 
-      $btnEdit = <<<EOF
+      $btnSelect = <<<EOF
 <button $type $class $style $attrib $onclick>
 $image $name
 </button>
@@ -253,16 +253,16 @@ EOF;
 
    private function ButtonDelete($IdRow)
    {
-      $class	 = ($this->btnEdit['class'] == '') ? '' : 'class="' . $this->btnEdit['class'] . '"';
-      $image	 = ($this->btnEdit['image'] == '') ? '' : '<img src="' . $this->btnEdit['image'] . '">';
-      $name	 = ($this->btnEdit['name'] == '') ? '' : $this->btnEdit['name'];
-      $attrib	 = ($this->btnEdit['attrib'] == '') ? '' : $this->btnEdit['attrib'];
-      $style	 = ($this->btnEdit['style'] == '') ? '' : 'style="' . $this->btnEdit['style'] . '"';
-      $type	 = ($this->btnEdit['type'] == '') ? '' : 'type="' . $this->btnEdit['type'] . '"';
-      $onclick	 = ($this->btnEdit['onclick'] == '') ? '' : 'OnClick="' . $this->btnEdit['onclick'] . '"';
+      $class	 = ($this->btnDelete['class'] == '') ? '' : 'class="' . $this->btnDelete['class'] . '"';
+      $image	 = ($this->btnDelete['image'] == '') ? '' : '<img src="' . $this->btnDelete['image'] . '">';
+      $name	 = ($this->btnDelete['name'] == '') ? '' : $this->btnDelete['name'];
+      $attrib	 = ($this->btnDelete['attrib'] == '') ? '' : $this->btnDelete['attrib'];
+      $style	 = ($this->btnEdit['style'] == '') ? '' : 'style="' . $this->btnDelete['style'] . '"';
+      $type	 = ($this->btnDelete['type'] == '') ? '' : 'type="' . $this->btnDelete['type'] . '"';
+      $onclick	 = ($this->btnDelete['onclick'] == '') ? '' : 'OnClick="' . $this->btnDelete['onclick'] . '"';
       $onclick = str_replace("()", "($IdRow)", $onclick);	      
 
-      $btnEdit = <<<EOF
+      $btnDelete = <<<EOF
 <button $type $class $style $attrib $onclick>
 $image $name
 </button>

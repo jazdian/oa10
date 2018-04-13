@@ -1,5 +1,4 @@
-
-$(document).ready(function () {
+$(document).ready(function() {
 
     $('.modal').modal({
         dismissible: false
@@ -8,7 +7,7 @@ $(document).ready(function () {
     $('#tclietes').DataTable({
 
     });
-    
+
     Materialize.updateTextFields();
 });
 
@@ -16,68 +15,78 @@ $(document).ready(function () {
 
 $(".button-collapse").sideNav();
 
-function CallBacksAjax(pUrl, pType, pData, pDatatype, MyCallBack)
-{
+function CallBacksAjax(pUrl, pType, pData, pDatatype, MyCallBack) {
     var ObjectData;
     $.ajax({
         url: pUrl,
         type: pType,
-        data: {MyJson: pData},
+        data: { MyJson: pData },
         datatype: pDatatype,
         async: true
-    }).done(function (jsonStr, textStatus, jqXHR)
-    {
-        if (console && console.log)
-        {
+    }).done(function(jsonStr, textStatus, jqXHR) {
+        if (console && console.log) {
             console.log("Success: " + textStatus + ". " + jqXHR + ". " + jsonStr);
         }
-        if (pDatatype == 'JSON')
-        {
+        if (pDatatype == 'JSON') {
             ObjectData = JSON.parse(jsonStr);
-        } else if (pDatatype == 'html')
-        {
+        } else if (pDatatype == 'html') {
             ObjectData = jsonStr;
         }
         MyCallBack(ObjectData);
         return ObjectData;
-    }).fail(function (jqXHR, textStatus, errorThrown)
-    {
-        if (console && console.log)
-        {
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        if (console && console.log) {
             console.log("Error: " + textStatus + ". " + errorThrown + ". " + jqXHR);
         }
         ObjectData = "Sorry, Error: " + errorThrown + ". Status: " + textStatus;
         MyCallBack(ObjectData);
         return ObjectData;
     });
-} 
-
-function GuardarDatos()
-{
-    console.log("Guardar Datos:", "Se guardaron los datos");
 }
 
-function EditarRegistroCli(ID)
-{
+function GuardarDatos() {
+    var JsonData = {
+        vars: {
+            NomFunction: "SaveNewClient",
+            id: $("#Id").val(),
+            name: $("#name").val(),
+            apaterno: $("#apaterno").val(),
+            amaterno: $('#amaterno').val(),
+            callenum: $('#callenum').val(),
+            direction: $('#direccion').val(),
+            telefono: $('#telefono').val(),
+            sexo: $('#sexo').val()
+        }
+    };
+
+    CallBacksAjax("view/AJAX.php", "POST", JsonData, "JSON", function(ObjectData) {
+        console.log(ObjectData);
+        var DatsBD = ObjectData['obj_'];
+        console.log("Guardar Datos:", "Se guardaron los datos");
+        //$("#modal1").modal("open");
+        //Materialize.updateTextFields();
+    });
+
+}
+
+function EditarRegistroCli(ID) {
     //console.log("Editar Registro:", "Se abre ventana para editar registro: " + ID);
     //Materialize.updateTextFields();
     var JsonData = {
-        "vars": {"NomFunction": "GetClienteJson", "id": ID}
+        "vars": { "NomFunction": "GetClienteJson", "id": ID }
     };
 
-    CallBacksAjax("view/AJAX.php", 'POST', JsonData, 'JSON', function (ObjectData)
-    {
+    CallBacksAjax("view/AJAX.php", 'POST', JsonData, 'JSON', function(ObjectData) {
         console.log(ObjectData);
         var DatsBD = ObjectData['obj_'];
         RecuperaInfoCliente(DatsBD);
-        
+
         $('#modal1').modal('open');
         Materialize.updateTextFields();
     });
 }
 
-function RecuperaInfoCliente(InfoCliente)
-{
+function RecuperaInfoCliente(InfoCliente) {
     $('#Id').val(InfoCliente[0]['id']);
     $('#name').val(InfoCliente[0]['name']);
     $('#apaterno').val(InfoCliente[0]['apat']);
@@ -92,4 +101,3 @@ function RecuperaInfoCliente(InfoCliente)
     //$('#ta_marca').val(InfoTabletas[0]['marca']);
 
 }
-

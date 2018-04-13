@@ -40,10 +40,12 @@ class DataAccess
 	     else if ($key === 'vars')
 	     { $ArrayVar = $value; }
 	 }
-        $StrQry = $ArrayVar->QueryString;        
-        try{
+        $StrQry = $ArrayVar->QueryString;
+        $StrTypeQry = $ArrayVar->NumFuncion;       
+        try
+        {
 
-	    $DatsJson = $this->ExecuteQry($ArrayParams, $StrQry);
+	    $DatsJson = $this->ExecuteQry($ArrayParams, $StrQry, $StrTypeQry);
 	    return $DatsJson;
 
         } catch (Exception $Ex) {
@@ -80,31 +82,40 @@ class DataAccess
 	 }	
     }
     
-    private function ExecuteQry($ArrayParams, $StrSP)
+    private function ExecuteQry($ArrayParams, $StrSP, $strtypeqry)
     {
        $Statement = $this->respConn->prepare($StrSP);
        $i = 1;
        foreach ($ArrayParams as $value)
        {
-	   $Statement->bindValue($i, $value, PDO::PARAM_STR);
-	   $i++;
+            $Statement->bindValue($i, $value, PDO::PARAM_STR);
+            $i++;
        }
        $result = $Statement->execute();
        if ($result === true)
        {
-	   $Table   = $Statement->fetchAll(\PDO::FETCH_OBJ);
-	   $NumRows = $Statement->rowCount();
-	   if($NumRows === 0)
-	   {   
-	      $Table = array(0=>(object)array('id' => 1, 'code' => 0, 'messege' => 'Not found rows to execute query...'));
-	   }
-	   $values = array('est_' => true
-			   , 'obj_' => $Table
-			   , 'msg_' => 'Success'
-			   , 'num_' => $NumRows
-			   , 'det_' => "Stored Procedure is ok.");
-	    $DatsJson = $values;
-	    return $DatsJson;                
+            if($strtypeqry === 'insert' || $strtypeqry === 'update')
+            {
+                $Table = array(0=>(object)array('id' => 1, 'code' => 1, 'messege' => 'Se ha insertado un nuevo registro...'));
+                $NumRows = 1;                
+            }
+            else
+            {
+                $Table = $Statement->fetchAll(\PDO::FETCH_OBJ);
+                $NumRows = $Statement->rowCount();
+            }
+
+            if($NumRows === 0)
+            {   
+                $Table = array(0=>(object)array('id' => 1, 'code' => 0, 'messege' => 'Not found rows to execute query...'));
+            }
+            $values = array('est_' => true
+                    , 'obj_' => $Table
+                    , 'msg_' => 'Success'
+                    , 'num_' => $NumRows
+                    , 'det_' => "Stored Procedure is ok.");
+                $DatsJson = $values;
+                return $DatsJson;                
        }
        else
        {

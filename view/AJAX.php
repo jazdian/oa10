@@ -21,8 +21,8 @@ if (isset($_POST['MyJson'])) {
         case 'GetClienteJson':
             require_once PATH_CLLER . '/ajax.controller.php';
             break;
-        case 'GetFullDatsAgen':
-            //include_once '../business/classAsignacionTabletas.php';
+        case 'SaveNewClient':
+            include_once PATH_CLLER . '/ajax.controller.php';
             break;
         case 'RetenerTabAgen':
             //include_once '../business/classAsignacionTabletas.php';
